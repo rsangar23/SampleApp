@@ -22,16 +22,12 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class GetData extends AsyncTask<Void, Void, Void> {
-   String data = "";
-    int id;
-    String image_url;
-    String name;
-    GridItem gridItem;
-   // String str = "";
-   String getData = "";
-   Context context;
-//    ArrayList<String> images;
-//    ArrayList<String> author;
+    private String data = "";
+    private String image_url;
+    private String name;
+    private GridItem gridItem;
+    Context context;
+
     ArrayList<GridItem> gridList;
 
     public GetData(Context context) {
@@ -41,9 +37,6 @@ public class GetData extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-
-//        images = new ArrayList<>();
-//        author = new ArrayList<>();
 
         try {
             URL url = new URL(WebServer.BASE_URL);
@@ -61,17 +54,11 @@ public class GetData extends AsyncTask<Void, Void, Void> {
             for(int i=0; i<jsonArray.length(); i++){
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                // str = "Id :" + jsonObject.get("id") + "\n" +
-                //         "Author :" + jsonObject.get("author");
 
-                id = jsonObject.getInt("id");
                 name = jsonObject.getString("author");
-
-//                author.add(jsonObject.getString("author"));
 
                 image_url = "https://i.picsum.photos/id/"+Integer.toString(jsonObject.getInt("id"))+"/300/300.jpg";
 
-//                images.add(image_url);
                 Log.d("img", "doInBackground: " + image_url);
 
                 gridItem = new GridItem();
@@ -81,16 +68,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
 
                 Log.d("author", "doInBackground: " + jsonObject.getString("author"));
 
-//                getData = getData + image_url;
             }
-
-
-
-//            for (GridItem item: gridList) {
-//                item = gridItem;
-//
-//            }
-
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -103,14 +81,9 @@ public class GetData extends AsyncTask<Void, Void, Void> {
         return null;
     }
 
-
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-
-//        MainActivity.textView.setText(getData);
-//        downloadfile(getData, MainActivity.icon);
-
 
         GridAdapter gridAdapter = new GridAdapter(gridList, context);
 

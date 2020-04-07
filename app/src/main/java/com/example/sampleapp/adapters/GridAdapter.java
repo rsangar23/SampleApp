@@ -55,7 +55,6 @@ public class GridAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.grid_item, parent, false);
-            Log.d("conv", "getView: " + convertView);
 
             viewHolder.author = convertView.findViewById(R.id.txt);
             viewHolder.img = convertView.findViewById(R.id.icon);
